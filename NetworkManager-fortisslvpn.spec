@@ -2,7 +2,7 @@ Summary:	NetworkManager VPN integration for Fortinet SSLVPN
 Summary(pl.UTF-8):	Integracja NetworkManagera z Fortinet SSLVPN
 Name:		NetworkManager-fortisslvpn
 Version:	1.2.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-fortisslvpn/1.2/%{name}-%{version}.tar.xz
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/nm-fortisslvpn-auth-dialog
 %attr(755,root,root) %{_libdir}/nm-fortisslvpn-service
 %attr(755,root,root) %{_libdir}/pppd/plugins/nm-fortisslvpn-pppd-plugin.so
-%{_libdir}/NetworkManager/VPN/nm-fortisslvpn-service.name
+%{_prefix}/lib/NetworkManager/VPN/nm-fortisslvpn-service.name
 %{_sysconfdir}/NetworkManager/VPN/nm-fortisslvpn-service.name
 %config(noreplace) %verify(not md5 mtime size) /etc/dbus-1/system.d/nm-fortisslvpn-service.conf
 %{_datadir}/appdata/network-manager-fortisslvpn.metainfo.xml
