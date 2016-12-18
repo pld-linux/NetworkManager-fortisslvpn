@@ -1,12 +1,12 @@
 Summary:	NetworkManager VPN integration for Fortinet SSLVPN
 Summary(pl.UTF-8):	Integracja NetworkManagera z Fortinet SSLVPN
 Name:		NetworkManager-fortisslvpn
-Version:	1.2.2
-Release:	2
+Version:	1.2.4
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-fortisslvpn/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	dbf98c77aa69e791505f0c2525270f7f
+# Source0-md5:	4c9317b84d05778b464f29aaea469cb1
 URL:		https://wiki.gnome.org/Projects/NetworkManager
 BuildRequires:	NetworkManager-devel >= 2:1.2.0
 BuildRequires:	NetworkManager-gtk-lib-devel >= 1.2.0
@@ -16,7 +16,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.32
 BuildRequires:	gtk+3-devel >= 3.4
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libsecret-devel
+BuildRequires:	libsecret-devel >= 0.18
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	ppp-plugin-devel >= 3:2.4.5
@@ -26,6 +26,7 @@ Requires:	NetworkManager >= 2:1.2.0
 Requires:	NetworkManager-gtk-lib >= 1.2.0
 Requires:	glib2 >= 1:2.32
 Requires:	gtk+3 >= 3.4
+Requires:	libsecret >= 0.18
 %requires_eq	ppp
 Requires:	openfortivpn
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README TODO
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-fortisslvpn-properties.so
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn.so
+%attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn-editor.so
 %attr(755,root,root) %{_libdir}/nm-fortisslvpn-auth-dialog
 %attr(755,root,root) %{_libdir}/nm-fortisslvpn-service
 %attr(755,root,root) %{_libdir}/pppd/plugins/nm-fortisslvpn-pppd-plugin.so
