@@ -1,21 +1,20 @@
 Summary:	NetworkManager VPN integration for Fortinet SSLVPN
 Summary(pl.UTF-8):	Integracja NetworkManagera z Fortinet SSLVPN
 Name:		NetworkManager-fortisslvpn
-Version:	1.2.8
+Version:	1.2.10
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-fortisslvpn/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	17e33862804a1ccd62e43410782e07a8
+# Source0-md5:	4a4bc3aae826623620c2090753a7acee
 URL:		https://wiki.gnome.org/Projects/NetworkManager
 BuildRequires:	NetworkManager-devel >= 2:1.2.0
 BuildRequires:	NetworkManager-gtk-lib-devel >= 1.2.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.19
 BuildRequires:	glib2-devel >= 1:2.32
 BuildRequires:	gtk+3-devel >= 3.4
-BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libsecret-devel >= 0.18
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
@@ -41,13 +40,13 @@ Integracja NetworkManagera z Fortinet SSLVPN.
 %setup -q
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--disable-static \
 	--with-pppd-plugin-dir=%{_libdir}/pppd/plugins
 %{__make}
@@ -69,13 +68,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -f NetworkManager-fortisslvpn.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO
-%attr(755,root,root) %{_libdir}/NetworkManager/libnm-fortisslvpn-properties.so
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn.so
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn-editor.so
 %attr(755,root,root) %{_libexecdir}/nm-fortisslvpn-auth-dialog
 %attr(755,root,root) %{_libexecdir}/nm-fortisslvpn-service
 %attr(755,root,root) %{_libdir}/pppd/plugins/nm-fortisslvpn-pppd-plugin.so
 %{_prefix}/lib/NetworkManager/VPN/nm-fortisslvpn-service.name
-%{_sysconfdir}/NetworkManager/VPN/nm-fortisslvpn-service.name
 %config(noreplace) %verify(not md5 mtime size) /etc/dbus-1/system.d/nm-fortisslvpn-service.conf
 %{_datadir}/appdata/network-manager-fortisslvpn.metainfo.xml
