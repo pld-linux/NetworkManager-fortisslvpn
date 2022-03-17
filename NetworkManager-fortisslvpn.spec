@@ -1,20 +1,23 @@
+# TODO:
+# - nm-fortisslvpn user (for dropping pppd privileges)
+# - gtk4 for GNOME 42 (--with-gtk4, requires libnma-gtk4 >= 1.8.33)
 Summary:	NetworkManager VPN integration for Fortinet SSLVPN
 Summary(pl.UTF-8):	Integracja NetworkManagera z Fortinet SSLVPN
 Name:		NetworkManager-fortisslvpn
-Version:	1.2.10
-Release:	3
+Version:	1.4.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/NetworkManager-fortisslvpn/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	4a4bc3aae826623620c2090753a7acee
+Source0:	https://download.gnome.org/sources/NetworkManager-fortisslvpn/1.4/%{name}-%{version}.tar.xz
+# Source0-md5:	33e1a0c50b9032621748ff166f57fa1d
 URL:		https://wiki.gnome.org/Projects/NetworkManager
 BuildRequires:	NetworkManager-devel >= 2:1.2.0
-BuildRequires:	NetworkManager-gtk-lib-devel >= 1.2.0
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.19
 BuildRequires:	glib2-devel >= 1:2.32
 BuildRequires:	gtk+3-devel >= 3.4
+BuildRequires:	libnma-devel >= 1.8.33
 BuildRequires:	libsecret-devel >= 0.18
 BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
@@ -22,9 +25,9 @@ BuildRequires:	ppp-plugin-devel >= 3:2.4.5
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	NetworkManager >= 2:1.2.0
-Requires:	NetworkManager-gtk-lib >= 1.2.0
 Requires:	glib2 >= 1:2.32
 Requires:	gtk+3 >= 3.4
+Requires:	libnma >= 1.8.33
 Requires:	libsecret >= 0.18
 %requires_eq	ppp
 Requires:	openfortivpn
@@ -71,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn.so
 %attr(755,root,root) %{_libdir}/NetworkManager/libnm-vpn-plugin-fortisslvpn-editor.so
 %attr(755,root,root) %{_libexecdir}/nm-fortisslvpn-auth-dialog
+%attr(755,root,root) %{_libexecdir}/nm-fortisslvpn-pinentry
 %attr(755,root,root) %{_libexecdir}/nm-fortisslvpn-service
 %attr(755,root,root) %{_libdir}/pppd/plugins/nm-fortisslvpn-pppd-plugin.so
 %{_prefix}/lib/NetworkManager/VPN/nm-fortisslvpn-service.name
