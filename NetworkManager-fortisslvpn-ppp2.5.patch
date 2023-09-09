@@ -1,0 +1,32 @@
+--- NetworkManager-fortisslvpn-1.4.0/src/nm-fortisslvpn-pppd-plugin.c.orig	2021-10-11 12:49:41.000000000 +0200
++++ NetworkManager-fortisslvpn-1.4.0/src/nm-fortisslvpn-pppd-plugin.c	2023-09-09 10:27:21.115938547 +0200
+@@ -296,7 +296,7 @@ get_ip4_routes (in_addr_t ouraddr)
+ static void
+ nm_ip_up (void *data, int arg)
+ {
+-	guint32 pppd_made_up_address = htonl (0x0a404040 + ifunit);
++	guint32 pppd_made_up_address = htonl (0x0a404040 + ppp_ifunit());
+ 	ipcp_options opts = ipcp_gotoptions[0];
+ 	ipcp_options peer_opts = ipcp_hisoptions[0];
+ 	GVariantBuilder builder;
+@@ -317,7 +317,7 @@ nm_ip_up (void *data, int arg)
+ 
+ 	g_variant_builder_add (&builder, "{sv}",
+ 	                       NM_VPN_PLUGIN_IP4_CONFIG_TUNDEV,
+-	                       g_variant_new_string (ifname));
++	                       g_variant_new_string (ppp_ifname()));
+ 
+ 	str = g_getenv ("VPN_GATEWAY");
+ 	if (str) {
+@@ -442,8 +442,8 @@ plugin_init (void)
+ 		return -1;
+ 	}
+ 
+-	add_notifier (&phasechange, nm_phasechange, NULL);
+-	add_notifier (&ip_up_notifier, nm_ip_up, NULL);
+-	add_notifier (&exitnotify, nm_exit_notify, NULL);
++	ppp_add_notify (NF_PHASE_CHANGE, nm_phasechange, NULL);
++	ppp_add_notify (NF_IP_UP, nm_ip_up, NULL);
++	ppp_add_notify (NF_EXIT, nm_exit_notify, NULL);
+ 	return 0;
+ }
