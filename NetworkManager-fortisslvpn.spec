@@ -35,7 +35,7 @@ Requires:	glib2 >= 1:2.32
 Requires:	gtk+3 >= 3.4
 Requires:	libnma >= 1.8.33
 Requires:	libsecret >= 0.18
-%requires_eq	ppp
+%requires_eq_to	ppp ppp-plugin-devel
 Requires:	openfortivpn
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
